@@ -472,15 +472,13 @@ class ParserHays:
             logger.info(f"Error getting disposition information: {e}")
             return dispositions
 
-    def add_version(self, case_metadata: CaseMetadata) -> int:
+    def add_version(self, court_case_number, html_hash) -> int:
         """
         Determines the version number for a CaseMetadata entry based on existing data.
         """
 
-        html_hash = (
-            case_metadata.html_hash
-        )  # get the html hash from the case metadata instance.
-        cause_number = case_metadata.court_case_number
+        html_hash = html_hash  # get the html hash from the case metadata instance.
+        court_case_number = court_case_number
 
         # 1. Duplicate HTML Hash Check
         existing_case_metadata = self.session.exec(
@@ -495,13 +493,15 @@ class ParserHays:
 
         # 2. New Case Check
         existing_case_metadatas = self.session.exec(
-            select(CaseMetadata).where(CaseMetadata.court_case_number == cause_number)
+            select(CaseMetadata).where(
+                CaseMetadata.court_case_number == court_case_number
+            )
         ).all()
 
         if not existing_case_metadatas:
             version = 1
             self.logger.info(
-                f"Version: New Case. Adding. No case with matching cause number exists: {cause_number}"
+                f"Version: New Case. Adding. No case with matching cause number exists: {court_case_number}"
             )
             return version
 
@@ -516,7 +516,7 @@ class ParserHays:
             else:
                 version = 1  # if there are no versions, set to one.
             self.logger.info(
-                f"Version: Updated Case. Adding. {len(existing_case_metadatas)} cases with matching cause number exists: {cause_number}"
+                f"Version: Updated Case. Adding. {len(existing_case_metadatas)} cases with matching cause number exists: {court_case_number}"
             )
             return version
 
@@ -571,11 +571,11 @@ class ParserHays:
                     case_type=None,
                     date_filed=None,
                     location=None,
-                    version=None,
+                    version=self.add_version(
+                        case_metadata_data["court_case_number"],
+                        self.hash_html(root_tables),
+                    ),
                 )
-
-                # Find the correct version number per this cause number
-                case_metadata.version = self.add_version(CaseMetadata)
 
                 self.session.add(case_metadata)
                 self.session.commit()
