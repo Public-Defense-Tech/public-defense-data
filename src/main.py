@@ -9,8 +9,6 @@ import argparse
 # Import all of the programs modules
 import scraper
 import parser
-import cleaner
-import updater
 
 
 class Orchestrator:
@@ -124,7 +122,7 @@ class Orchestrator:
             self.logger.info(
                 f"Starting to scrape, parse, clean, and update this county: {c}"
             )
-            scraper.Scraper().scrape(
+            """scraper.Scraper().scrape(
                 county=c,
                 start_date=self.start_date,
                 end_date=self.end_date,
@@ -133,9 +131,10 @@ class Orchestrator:
                 case_html_path=self.case_html_path,
                 judicial_officers=self.judicial_officers,
                 ms_wait=self.ms_wait,
-            )
+            )"""
             parser.Parser().parse(
                 county=c,
+                odyssey_id=None,
                 case_number=self.case_number,
                 parse_single_file=self.parse_single_file,
                 test=self.test,
@@ -146,6 +145,10 @@ class Orchestrator:
 
 
 if __name__ == "__main__":
+    orchestrator_instance = Orchestrator()
+    orchestrator_instance.orchestrate()
+
+"""if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Public Defense Data Orchestrator")
     parser.add_argument(
         "--counties", nargs="*", help="Counties to process (space-separated)"
@@ -176,4 +179,4 @@ if __name__ == "__main__":
         ms_wait=args.ms_wait,
         parse_single_file=args.parse_single_file,
         test=args.test,
-    ).orchestrate()
+    ).orchestrate()"""

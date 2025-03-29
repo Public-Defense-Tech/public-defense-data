@@ -148,6 +148,9 @@ class ParserHays:
                 else:
                     logger.info(f"Unexpected type for disposition: {type(disposition)}")
 
+            if not top_charge:
+                top_charge = {"charge_name": None, "charge_level": None}
+
             return top_charge
         except Exception as e:
             logger.info(f"Error getting top charge: {e}")
@@ -789,4 +792,5 @@ class ParserHays:
             logger.error(f"Unexpected error while parsing Hays case: {e}")
             logger.error(f"Traceback: {traceback.format_exc()}")
             self.session.rollback()
+            raise
             return {"status": "error", "error": str(e)}
