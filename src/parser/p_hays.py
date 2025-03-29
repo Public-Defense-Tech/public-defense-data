@@ -249,7 +249,7 @@ class ParserHays:
                 "defense_attorney_phone_number": defense_attorney_rows[1][7],
             }
         except Exception as e:
-            logger.info(f"Error parsing defendant rows: {e}")
+            logger.info(f"Error parsing defense_attorney rows: {e}")
             return {
                 "defense_attorney": None,
                 "appointed_or_retained": None,
