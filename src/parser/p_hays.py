@@ -194,9 +194,9 @@ class ParserHays:
             result = {}  # Initialize an empty dictionary
 
             try:
-                result["defendant"] = defendant_rows[1][1]
+                result["name"] = defendant_rows[1][1]
             except (IndexError, TypeError):
-                result["defendant"] = None
+                result["name"] = None
 
             try:
                 result["sex"] = defendant_rows[1][2].split(" ")[0]
@@ -225,11 +225,9 @@ class ParserHays:
                 result["weight"] = None
 
             try:
-                result["defendant_address"] = (
-                    defendant_rows[2][0] + " " + defendant_rows[2][1]
-                )
+                result["address"] = defendant_rows[2][0] + " " + defendant_rows[2][1]
             except (IndexError, TypeError):
-                result["defendant_address"] = None
+                result["address"] = None
 
             try:
                 result["sid"] = defendant_rows[2][3]
@@ -241,13 +239,13 @@ class ParserHays:
         except Exception as e:
             logger.warning(f"Error parsing defendant rows: {e}")
             return {
-                "defendant": None,
+                "name": None,
                 "sex": None,
                 "race": None,
                 "date_of_birth": None,
                 "height": None,
                 "weight": None,
-                "defendant_address": None,
+                "address": None,
                 "sid": None,
             }
 
@@ -275,11 +273,21 @@ class ParserHays:
 
     def parse_state_rows(self, state_rows: List[List[str]], logger) -> dict:
         try:
-            prosecuting_attorney_dict = {
-                "prosecuting_attorney": state_rows[3][2],
-                "prosecuting_attorney_phone": state_rows[3][3],
-            }
-            return prosecuting_attorney_dict
+
+            result = {}  # Initialize an empty dictionary
+
+            try:
+                result["prosecuting_attorney"] = state_rows[3][2]
+            except (IndexError, TypeError):
+                result["prosecuting_attorney"] = None
+
+            try:
+                result["prosecuting_attorney_phone"] = state_rows[3][3]
+            except (IndexError, TypeError):
+                result["prosecuting_attorney_phone"] = None
+
+            return result
+
         except Exception as e:
             logger.info(f"Error parsing state rows: {e}")
             prosecuting_attorney_dict = {
