@@ -136,6 +136,7 @@ class Parser:
         parse_single_file: bool = False,
     ) -> List[str]:
         # logger.info(f"get_list_of_html function called\n")
+
         try:
             if parse_single_file:
                 logger.info(f"parse_single_file is True\n")
@@ -203,9 +204,9 @@ class Parser:
     def parse(
         self,
         county: str,
-        odyssey_id: str,
         case_number: str,
         parse_single_file: bool = False,
+        odyssey_id: str | None = "123456",
         test=False,
     ) -> None:
         logger = self.configure_logger()
@@ -224,7 +225,11 @@ class Parser:
 
             # Get a list of the HTML files that it needs to parse.
             case_html_list = self.get_list_of_html(
-                case_html_path, odyssey_id, county, logger, parse_single_file
+                case_html_path=case_html_path,
+                odyssey_id=odyssey_id,
+                county=county,
+                logger=logger,
+                parse_single_file=parse_single_file,
             )
             logger.info(
                 f"parser: Starting for loop to parse {len(case_html_list)} cases"

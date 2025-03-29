@@ -11,27 +11,6 @@ from dotenv import load_dotenv
 import logging
 from datetime import datetime as dt
 
-CHARGE_SEVERITY = {
-    "First Degree Felony": 1,
-    "Second Degree Felony": 2,
-    "Third Degree Felony": 3,
-    "State Jail Felony": 4,
-    "Misdemeanor A": 5,
-    "Misdemeanor B": 6,
-}
-
-# List of motions identified as evidentiary.
-# TODO: These should be moved to a separate JSON in resources
-GOOD_MOTIONS = [
-    "Motion To Suppress",
-    "Motion to Reduce Bond",
-    "Motion to Reduce Bond Hearing",
-    "Motion for Production",
-    "Motion For Speedy Trial",
-    "Motion for Discovery",
-    "Motion In Limine",
-]
-
 
 class ParserHays:
 
@@ -40,6 +19,22 @@ class ParserHays:
         SQLModel.metadata.create_all(self.engine)
         self.session = Session(self.engine)
         self.logger = self.configure_logger()
+
+        # Initialize the list of good motions
+        self.GOOD_MOTIONS = None
+        good_motions_path = os.path.join(
+            os.path.dirname(__file__), "..", "..", "resources", "GOOD_MOTIONS.json"
+        )
+        with open(good_motions_path, "r") as good_motions_json:
+            self.GOOD_MOTIONS = json.load(good_motions_json)["GOOD_MOTIONS"]
+
+        # Initialize the list of charge severity
+        self.CHARGE_SEVERITY = None
+        charge_severity_path = os.path.join(
+            os.path.dirname(__file__), "..", "..", "resources", "CHARGE_SEVERITY.json"
+        )
+        with open(charge_severity_path, "r") as charge_severity_json:
+            self.CHARGE_SEVERITY = json.load(charge_severity_json)["CHARGE_SEVERITY"]
 
         pass
 
@@ -96,7 +91,7 @@ class ParserHays:
 
     def get_charge_severity(self, charge: str, logger) -> int:
         try:
-            for charge_name, severity in CHARGE_SEVERITY.items():
+            for charge_name, severity in self.CHARGE_SEVERITY.items():
                 if charge_name in charge:
                     return severity
             return float("inf")
@@ -543,7 +538,7 @@ class ParserHays:
     def parser_hays(
         self,
         county: str,
-        odyssey_id: str,
+        odyssey_id: str | None,
         case_number,
         logger,
         case_soup: BeautifulSoup,
@@ -761,7 +756,7 @@ class ParserHays:
                         )
                         if case_metadata_row:
                             case_metadata_row.good_motions = self.find_good_motions(
-                                other_event_rows, GOOD_MOTIONS
+                                other_event_rows, self.GOOD_MOTIONS
                             )
                             case_metadata_row.has_evidence_of_representation = (
                                 len(case_metadata_row.good_motions) > 0
