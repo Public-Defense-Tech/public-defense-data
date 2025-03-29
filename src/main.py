@@ -23,7 +23,6 @@ class Orchestrator:
         judicial_officers=None,
         ms_wait=None,
         parse_single_file=False,
-        test=False,
     ):
 
         self.create_logs_folder()
@@ -68,7 +67,6 @@ class Orchestrator:
         self.judicial_officers = judicial_officers
         self.ms_wait = ms_wait
         self.parse_single_file = parse_single_file
-        self.test = test
 
         self.logger.info(f"Scraping Start Date: {self.start_date}.")
         self.logger.info(f"Scraping End Date: {self.end_date}.")
@@ -137,7 +135,6 @@ class Orchestrator:
                 odyssey_id=None,
                 case_number=self.case_number,
                 parse_single_file=self.parse_single_file,
-                test=self.test,
             )
             self.logger.info(
                 f"Completed with scraping, parsing, cleaning, and updating of this county: {c}"
@@ -163,7 +160,6 @@ if __name__ == "__main__":
     parser.add_argument(
         "--parse_single_file", action="store_true", help="Parse single file"
     )
-    parser.add_argument("--test", action="store_true", help="Test mode")
 
     args = parser.parse_args()
 
@@ -178,5 +174,4 @@ if __name__ == "__main__":
         judicial_officers=args.judicial_officers,
         ms_wait=args.ms_wait,
         parse_single_file=args.parse_single_file,
-        test=args.test,
     ).orchestrate()"""

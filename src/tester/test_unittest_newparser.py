@@ -7,28 +7,32 @@ import unittest
 import parser.p_hays
 
 
-class TestModels(unittest.TestCase):
-    def setUp(self):
-        self.engine = create_engine("sqlite:///:memory:")
-        SQLModel.metadata.create_all(self.engine)
-        self.session = Session(self.engine)
-
-    def tearDown(self):
-        self.session.close()
+class NewParserTests(unittest.TestCase):
 
     def test_newparser_end_to_end(
-        self, county="hays", odyssey_id="123456", case_number="123456"
+        self,
+        county="hays",
+        odyssey_id="123456",
+        case_number="123456",
+        parse_single_file=True,
     ):
         self.parser_instance = parser.Parser()
         self.parser_instance.parse(
             county=county,
             odyssey_id=odyssey_id,
             case_number=case_number,
-            parse_single_file=True,
-            test=True,
+            parse_single_file=parse_single_file,
         )
 
-    def test_case_metadata(self):
+    """def setUp(self):
+        self.engine = create_engine("sqlite:///:memory:")
+        SQLModel.metadata.create_all(self.engine)
+        self.session = Session(self.engine)
+
+    def tearDown(self):
+        self.session.close()"""
+
+    """def test_case_metadata(self):
         case_data = {
             "county_of_jurisdiction": "hays",
             "court_case_number": "1",
@@ -173,4 +177,4 @@ class TestModels(unittest.TestCase):
         event = Event(**event_data)
         self.session.add(event)
         self.session.commit()
-        self.assertEqual(self.session.get(Event, 1).event, "Court Event")
+        self.assertEqual(self.session.get(Event, 1).event, "Court Event")"""

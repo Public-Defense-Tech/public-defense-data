@@ -46,10 +46,8 @@ class Parser:
         return logger
 
     def get_class_and_method(
-        self, logger, county: str, test=False
+        self, logger, county: str
     ) -> Tuple[Optional[object], Optional[callable]]:
-        if test:
-            logger.info(f"Test mode is on")
         # Construct the module, class, and method names
         module_name = f"p_{county}"  # ex: 'p_hays'
         class_name = f"Parser{county.capitalize()}"  # ex: 'ParserHays'
@@ -207,7 +205,6 @@ class Parser:
         case_number: str,
         parse_single_file: bool = False,
         odyssey_id: str | None = "123456",
-        test=False,
     ) -> None:
         logger = self.configure_logger()
 
@@ -217,7 +214,7 @@ class Parser:
         county = county.lower()
         try:
             # get input and output directories and make json dir if not present
-            case_html_path, case_json_path = self.get_directories(county, logger, test)
+            case_html_path, case_json_path = self.get_directories(county, logger)
 
             # start
             START_TIME_PARSER = time()
@@ -249,7 +246,7 @@ class Parser:
 
                     # get the correct class and method for the given county
                     parser_instance, parser_function = self.get_class_and_method(
-                        county=county, logger=logger, test=test
+                        county=county, logger=logger
                     )
 
                     if parser_instance is not None and parser_function is not None:
