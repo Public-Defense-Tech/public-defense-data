@@ -55,8 +55,6 @@ Using `pip`, install the project dependencies.
 pip install -r requirements.txt
 ```
 
-### Running CLI
-
 ## Command-Line Usage
 
 This program utilizes `argparse` to allow users to specify various parameters directly from the command line.
@@ -71,21 +69,21 @@ python main.py [arguments]
 ```
 
 * `--counties`: Specifies the counties to process. Multiple counties can be provided, separated by spaces. Example: `python your_script_name.py --counties "CountyA" "CountyB" "CountyC"`
-* `--start_date`: Specifies the start date for processing, in YYYY-MM-DD format. Example: `python your_script_name.py --start_date 2023-01-01`
-* `--end_date`: Specifies the end date for processing, in YYYY-MM-DD format. Example: `python your_script_name.py --end_date 2023-12-31`
-* `--court_calendar_link_text`: Specifies the court calendar link text. Example: `python your_script_name.py --court_calendar_link_text "Calendar Link"`
-* `--case_number`: Specifies the case number. Example: `python your_script_name.py --case_number "Case12345"`
-* `--case_html_path`: Specifies the path to the case HTML file. Example: `python your_script_name.py --case_html_path "/path/to/case.html"`
-* `--judicial_officers`: Specifies the judicial officers. Example: `python your_script_name.py --judicial_officers "Judge Smith, Judge Jones"`
-* `--ms_wait`: Specifies the milliseconds to wait (integer). Example: `python your_script_name.py --ms_wait 500`
+* `--start_date`: Specifies the start date for processing, in YYYY-MM-DD format. Example: `python main.py --start_date 2023-01-01`
+* `--end_date`: Specifies the end date for processing, in YYYY-MM-DD format. Example: `python main.py --end_date 2023-12-31`
+* `--court_calendar_link_text`: Specifies the court calendar link text. Example: `python main.py --court_calendar_link_text "Calendar Link"`
+* `--case_number`: Specifies the case number. Example: `python main.py --case_number "Case12345"`
+* `--case_html_path`: Specifies the path to the case HTML file. Example: `python main.py --case_html_path "/path/to/case.html"`
+* `--judicial_officers`: Specifies the judicial officers. Example: `python main.py --judicial_officers "Judge Smith, Judge Jones"`
+* `--ms_wait`: Specifies the milliseconds to wait (integer). Example: `python main.py --ms_wait 500`
 * `--parse_single_file`: A flag to indicate that a single file should be parsed. When present, the program will parse a single file. Example: `python your_script_name.py --parse_single_file`
 
-# Combining Arguments:
+#### Combining Arguments:
 You can combine multiple arguments in a single command. For example:
 `python main.py --counties "hays" "tyler" --start_date 2023-06-01 --end_date 2023-06-30 --ms_wait 1000`
 This command will process data for "hays" and "tyler" between June 1, 2023, and June 30, 2023, with a 1000 millisecond wait between operations.
 
-# Example with single file parsing:
+#### Example with single file parsing:
 `python main.py --case_html_path "/path/to/my_case.html" --parse_single_file`
 This command parses the single file found at /path/to/my_case.html.
 
