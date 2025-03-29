@@ -554,6 +554,18 @@ class ParserHays:
                     county, odyssey_id, case_soup, logger
                 )
 
+                # Check the version to see if we should continue
+                html_hash = self.hash_html(root_tables)
+                version = self.add_version(
+                    case_metadata_data["court_case_number"],
+                    html_hash,
+                )
+                if version == -1:
+                    logger.info(
+                        f"Stopping parse for {case_metadata_data['court_case_number']}: duplicate hash in database: {html_hash}"
+                    )
+                    return
+
                 # Create CaseMetadata
 
                 case_metadata = CaseMetadata(
@@ -571,10 +583,7 @@ class ParserHays:
                     case_type=None,
                     date_filed=None,
                     location=None,
-                    version=self.add_version(
-                        case_metadata_data["court_case_number"],
-                        self.hash_html(root_tables),
-                    ),
+                    version=version,
                 )
 
                 self.session.add(case_metadata)
