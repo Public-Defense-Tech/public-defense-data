@@ -9,7 +9,7 @@ import parser.p_hays
 
 class NewParserTests(unittest.TestCase):
 
-    def test_newparser_end_to_end(
+    def test_parser_end_to_end(
         self,
         county="hays",
         odyssey_id="123456",
