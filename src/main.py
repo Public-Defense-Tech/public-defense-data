@@ -52,12 +52,12 @@ class Orchestrator:
             self.counties = counties
 
         if start_date is None:
-            self.start_date = "2024-01-01"
+            self.start_date = "2025-02-19"
         else:
             self.start_date = start_date
 
         if end_date is None:
-            self.end_date = "2024-01-31"
+            self.end_date = "2025-02-19"
         else:
             self.end_date = end_date
 
@@ -141,11 +141,11 @@ class Orchestrator:
             )
 
 
-if __name__ == "__main__":
-    orchestrator_instance = Orchestrator()
-    orchestrator_instance.orchestrate()
-
 """if __name__ == "__main__":
+    orchestrator_instance = Orchestrator()
+    orchestrator_instance.orchestrate()"""
+
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Public Defense Data Orchestrator")
     parser.add_argument(
         "--counties", nargs="*", help="Counties to process (space-separated)"
@@ -174,4 +174,4 @@ if __name__ == "__main__":
         judicial_officers=args.judicial_officers,
         ms_wait=args.ms_wait,
         parse_single_file=args.parse_single_file,
-    ).orchestrate()"""
+    ).orchestrate()
