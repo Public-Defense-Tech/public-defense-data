@@ -120,7 +120,7 @@ class Orchestrator:
             self.logger.info(
                 f"Starting to scrape, parse, clean, and update this county: {c}"
             )
-            """scraper.Scraper().scrape(
+            scraper.Scraper().scrape(
                 county=c,
                 start_date=self.start_date,
                 end_date=self.end_date,
@@ -129,7 +129,7 @@ class Orchestrator:
                 case_html_path=self.case_html_path,
                 judicial_officers=self.judicial_officers,
                 ms_wait=self.ms_wait,
-            )"""
+            )
             parser.Parser().parse(
                 county=c,
                 odyssey_id=None,
