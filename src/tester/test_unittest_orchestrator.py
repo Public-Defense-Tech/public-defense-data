@@ -1,7 +1,4 @@
-from sqlmodel import Session, create_engine, SQLModel
-from datetime import date
 import unittest
-import parser.p_hays
 import main
 
 
@@ -10,12 +7,12 @@ class OrchestratorTests(unittest.TestCase):
     def test_orchestrator_end_to_end(
         self,
         counties=["hays"],
-        start_date="2024-01-01",
-        end_date="2024-01-01",
+        start_date="2022-05-10",
+        end_date="2022-05-10",
         court_calendar_link_text=None,
         case_number=None,
         case_html_path=None,
-        judicial_officers=None,
+        judicial_officers=["Updegrove, Robert"],
         ms_wait=None,
         parse_single_file=False,
     ):
