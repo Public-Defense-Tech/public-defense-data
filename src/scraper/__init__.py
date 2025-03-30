@@ -197,9 +197,12 @@ class Scraper:
         :raises AttributeError: If the class or method cannot be found.
         """
 
-        module_name = f"s_{county}"  # ex: 's_hays'
-        class_name = f"Scraper{county.capitalize()}"
-        method_name = f"scraper_{county}"
+        #module_name = f"s_{county}"  # ex: 's_hays'
+        #class_name = f"Scraper{county.capitalize()}"
+        #method_name = f"scraper_{county}"
+        module_name = f"s_hays"
+        class_name = f"ScraperHays"
+        method_name = f"scraper_hays"
 
         # Add the current directory to the system path
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
