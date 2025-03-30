@@ -597,10 +597,10 @@ class Scraper:
         ms_wait: int,
         start_date: str,
         end_date: str,
-        court_calendar_link_text: Optional[str],
-        case_number: Optional[str],
-        case_html_path: Optional[str],
-        ssl: Optional[bool] = True
+        court_calendar_link_text: Optional[str] = None,
+        case_number: Optional[str] = None,
+        case_html_path: Optional[str] = None,
+        ssl: bool = True
     ) -> None:
         ms_wait, start_date, end_date, court_calendar_link_text, case_number, ssl, county, case_html_path = self.set_defaults(
             ms_wait, start_date, end_date, court_calendar_link_text, case_number, ssl, county, case_html_path
