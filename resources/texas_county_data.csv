@@ -3,7 +3,7 @@ Harris,4731145,http://www.harriscountytx.gov/,https://jpodysseyportal.harriscoun
 Dallas,2613539,http://www.dallascounty.org/,https://courtsportal.dallascounty.org/DALLASPROD/,odyssey,2017.1.46.2,,,,,,,no
 Tarrant,2110640,http://www.tarrantcounty.com/,https://odyssey.tarrantcounty.com/PublicAccess/,odyssey,2003,,,,,,,no
 Bexar,2009324,http://www.bexar.org/,https://portal-txbexar.tylertech.cloud/Portal/,odyssey,2017.1.35.6,,yes – maintenance,,,,,no
-Travis,1290188,https://www.traviscountytx.gov/,https://odysseypa.traviscountytx.gov/JPPublicAccess/,odyssey,2011,,,,,,,no
+Travis,1290188,https://www.traviscountytx.gov/,https://odysseyweb.traviscountytx.gov/Portal/,odyssey,2017.1.55.3,,,,,,,no
 Collin,1064465,http://www.collincountytx.gov/,https://cijspub.co.collin.tx.us/,odyssey,2003,,,,,,,no
 Denton,906422,https://dentoncounty.gov/,https://justice1.dentoncounty.gov/PublicAccess/,odyssey,2003,,,,,,,no
 Hidalgo,870781,https://tx-hidalgocounty.civicplus.com/,https://pa.co.hidalgo.tx.us/,odyssey,2003,,,,,,,no
@@ -56,7 +56,7 @@ Starr,65920,http://www.co.starr.tx.us/,https://www.co.starr.tx.us/page/starr.Cou
 Nacogdoches,64653,http://www.co.nacogdoches.tx.us/,https://www.co.nacogdoches.tx.us/OpenRecords/Index.asp,,,,,,,,it is unclear how to get criminal records,no
 Hood,61598,http://www.co.hood.tx.us/,https://www.texasonlinerecords.com/clerk/?office_id=24,netdata,2013,,,yes,,yes,must register + captcha,no
 Van Zandt,59541,http://www.vanzandtcounty.org/,https://www.vanzandtcounty.org/page/vanzandt.County.Clerk,,,,,,,yes,uses countygovernmentrecords.com but it's not clear if this includes criminal records. Must register,no
-Anderson,57922,http://www.co.anderson.tx.us/,http://ac5.co.anderson.tx.us/PublicAccess/,odyssey,2003,,,,,,,no
+Anderson,57922,http://www.co.anderson.tx.us/,http://pubaccess.co.anderson.tx.us/PublicAccess/default.aspx,odyssey,2003,,,,,,,no
 Maverick,57887,http://www.co.maverick.tx.us/,https://public.lgsonlinesolutions.com/ors.html,Local Government Solutions,2022,,,,,,scrapable,no
 Waller,56794,http://www.co.waller.tx.us/,https://odysseypa.tylerhost.net/Waller/,odyssey,2003,,,,,,,no
 Hardin,56231,http://www.co.hardin.tx.us/,http://www.hardincourts.com/recordSearch.php,"Henschen & Associates, Inc.",2022,,,yes,,,scrapable outside of captcha,no
