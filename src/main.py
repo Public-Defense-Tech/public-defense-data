@@ -120,7 +120,7 @@ class Orchestrator:
             self.logger.info(
                 f"Starting to scrape, parse, clean, and update this county: {c}"
             )
-            scraper.Scraper().scrape(
+            """scraper.Scraper().scrape(
                 county=c,
                 start_date=self.start_date,
                 end_date=self.end_date,
@@ -129,7 +129,7 @@ class Orchestrator:
                 case_html_path=self.case_html_path,
                 judicial_officers=self.judicial_officers,
                 ms_wait=self.ms_wait,
-            )
+            )"""
             parser.Parser().parse(
                 county=c,
                 odyssey_id=None,
@@ -146,22 +146,24 @@ class Orchestrator:
     orchestrator_instance.orchestrate()"""
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Public Defense Data Orchestrator")
-    parser.add_argument(
+    arg_parser = argparse.ArgumentParser(description="Public Defense Data Orchestrator")
+    arg_parser.add_argument(
         "--counties", nargs="*", help="Counties to process (space-separated)"
     )
-    parser.add_argument("--start_date", help="Start date (YYYY-MM-DD)")
-    parser.add_argument("--end_date", help="End date (YYYY-MM-DD)")
-    parser.add_argument("--court_calendar_link_text", help="Court calendar link text")
-    parser.add_argument("--case_number", help="Case number")
-    parser.add_argument("--case_html_path", help="Case HTML path")
-    parser.add_argument("--judicial_officers", help="Judicial officers")
-    parser.add_argument("--ms_wait", type=int, help="Milliseconds wait")
-    parser.add_argument(
+    arg_parser.add_argument("--start_date", help="Start date (YYYY-MM-DD)")
+    arg_parser.add_argument("--end_date", help="End date (YYYY-MM-DD)")
+    arg_parser.add_argument(
+        "--court_calendar_link_text", help="Court calendar link text"
+    )
+    arg_parser.add_argument("--case_number", help="Case number")
+    arg_parser.add_argument("--case_html_path", help="Case HTML path")
+    arg_parser.add_argument("--judicial_officers", help="Judicial officers")
+    arg_parser.add_argument("--ms_wait", type=int, help="Milliseconds wait")
+    arg_parser.add_argument(
         "--parse_single_file", action="store_true", help="Parse single file"
     )
 
-    args = parser.parse_args()
+    args = arg_parser.parse_args()
 
     # Create Orchestrator instance with parsed arguments
     Orchestrator(

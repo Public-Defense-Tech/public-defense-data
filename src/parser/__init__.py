@@ -49,9 +49,9 @@ class Parser:
         self, logger, county: str
     ) -> Tuple[Optional[object], Optional[callable]]:
         # Construct the module, class, and method names
-        module_name = f"p_{county}"  # ex: 'p_hays'
-        class_name = f"Parser{county.capitalize()}"  # ex: 'ParserHays'
-        method_name = f"parser_{county}"  # ex: 'parser_hays'
+        module_name = "p_hays"  # f"p_{county}"  # ex: 'p_hays'
+        class_name = "ParserHays"  # f"Parser{county.capitalize()}"  # ex: 'ParserHays'
+        method_name = "parser_hays"  # f"parser_{county}"  # ex: 'parser_hays'
 
         # logger.info(
         #    f"Module: {module_name}\nClass: {class_name}\nMethod: {method_name}\n"
